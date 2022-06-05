@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include<string.h>
+void bitstuffing();
+void characterstuffing();
+void  charactercount();int main()
+{
+    int n,ch;
+    printf("1.Bit stuffing\n2.Character stuffing\n3.Character count\n:");
+    printf("enter choice:");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:bitstuffing();
+        break;
+        case 2:characterstuffing();
+        break;
+        case 3:charactercount();
+        break;
+        default:
+        printf("invalid choice:");
+    }
+    return 0;
+}
+void bitstuffing()
+{
+    int n;
+    //printf("hi");
+     printf("enter the size of frame:");
+    scanf("%d",&n);
+    int bit[100],i,j,k,temp[100];
+    printf("enter the bits of frame");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&bit[i]);
+    }
+    int count;
+    count=1;
+    i=0;
+    j=0;
+    while(i<n)
+    {
+        if(bit[i]==1)
+        {
+            temp[j]=bit[i];
+            for(k=i+1;k<n && bit[k]==1 && count<5;k++)
+            {                j++;
+                temp[j] = bit[k];
+                count++;
+                if(count==5)
+                {
+                   j++;
+                   temp[j]=0;
+                }
+                i=k;
+            }
+        }
+        else {
+            temp[j] = bit[i];
+        }
+        i++;
+        j++;
+    }
+    for(i=0;i<j;i++)
+    {
+        printf("%d",temp[i]);
+    }
+}
+void characterstuffing()
+{
+   char sd[1],temp[100];
+   char data[100];
+   int n,i,j,count=0;
+   printf("enter start delimiter:");
+  scanf("%s",sd);
+   printf("enter data:");
+  scanf("%s",data);
+   n=strlen(data);
+  i=0,j=0;
+  while(i<n)
+  {
+      if(data[i]==sd[0])
+      {
+         temp[j]='#';
+         temp[j+1]=data[i];
+         j=j+2;
+         count++;
+       }
+      else
+      {
+          temp[j]=data[i];
+          j++;
+      }
+      i++;
+  }
+  for(i=0;i<count+n;i++)
+  {
+      printf("%c",temp[i]);
+  }
+}
+void charactercount()
+{
+    int frames,i;
+    printf("enter no of frames:");
+    scanf("%d",&frames);
+     char str[frames][10];
+         char ans[frames][10];
+     for(i=0;i<frames;i++)
+     {
+    printf("enter string:");
+    scanf("%s",str[i]);
+     }
+    for(i=0;i<frames;i++)
+    {
+        int m=strlen(str[i]);
+        ans[i][0]=m+1+'0';
+        for(int j=1;j<m+1;j++)
+    {
+        ans[i][j]=str[i][j-1];
+    }
+    }
+    for(int i=0;i<frames;i++)
+    {
+        int m=strlen(str[i]);
+        for(int j=0;j<m+1;j++)
+        {
+        printf("%c",ans[i][j]);
+    }
+    }
+}
+
