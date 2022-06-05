@@ -99,32 +99,31 @@ void characterstuffing()
 }
 void charactercount()
 {
-    int frames,i;
-    printf("enter no of frames:");
-    scanf("%d",&frames);
-     char str[frames][10];
-         char ans[frames][10];
-     for(i=0;i<frames;i++)
-     {
-    printf("enter string:");
-    scanf("%s",str[i]);
-     }
-    for(i=0;i<frames;i++)
-    {
-        int m=strlen(str[i]);
-        ans[i][0]=m+1+'0';
-        for(int j=1;j<m+1;j++)
-    {
-        ans[i][j]=str[i][j-1];
-    }
-    }
-    for(int i=0;i<frames;i++)
-    {
-        int m=strlen(str[i]);
-        for(int j=0;j<m+1;j++)
-        {
-        printf("%c",ans[i][j]);
-    }
-    }
+    int n,i,j;
+    printf("enter n:\n");
+    scanf("%d",&n);
+    char data[100][100],ans[100][100];
+    for(i=0;i<n;i++)
+    {
+        printf("enter string %d\n",i+1);
+        scanf("%s",data[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        int m=strlen(data[i]);
+        ans[i][0]=m+1+'0';
+        for(j=1;j<=m;j++)
+        {
+            ans[i][j]=data[i][j-1];
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        int m=strlen(data[i]);
+        for(j=0;j<=m;j++)
+        {
+            printf("%c",ans[i][j]);
+        }
+    }
 }
 
